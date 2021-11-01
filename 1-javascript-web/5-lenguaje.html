@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lenguaje</title>
+</head>
+<body>
+    <script>
+        var i;
+        for(i = 0; i < 3; i++) {
+            //alert('Hola Miguel ' + i);
+            alert('Hola Miguel');
+        }
+        /* Bucle for - Dentro del bucle for puedo escribir valores o la cabecera de como va ser la repeticion, para definir cualquier repeticion en lenguajes de programacion, tengo 3 partes fundamentales:
+            - Primero una inicializacion en la cual digo como voy a inicializar la variable que yo voy a utilizar para llevar la cuenta del numero de repeticiones, la i va a valer 0.
+            - Segundo es saber hasta donde vas a llegar repitidiendo esto, la i sera menor que 3
+            - Tercero es saber el incremento o decremento, cada vez que se ejecute este bucle, voy a incrementar la variable i en una unidad, que se hace de esta manera con ++, quedara i++
+        */
+
+        //2º ejemplo con array para saludar a tres personas
+        var i;
+        var nombres = ['Miguel', 'Luis', 'Ruben'];
+        for(i = 0; i < 3; i++) {
+            //alert('Hola Miguel ' + i);
+            alert('Hola ' + nombres[i]);
+        }
+
+        //3r ejemplo con array para saludar a varias personas, las que sean, 4 o 200
+        /*Substituimos el numero 3 por la variable/array nombres con la propiedad length que lo que hace es que llega hasta la ultima posicion del array
+        La propiedad length siempre devuelve el numero de posiciones que hay en este array
+        */
+        var i;
+        var nombres = ['Miguel', 'Luis', 'Ruben', 'Sara', 'Victor'];
+        for(i = 0; i < nombres.length; i++) {
+            alert('Hola ' + nombres[i]);
+        }
+    </script>
+</body>
+</html>

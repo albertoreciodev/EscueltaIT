@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicialización</title>
+
+    <script>
+
+        function cambiaEstilo() {
+            document.getElementById('ano').style.color = '#33cccc';
+            document.getElementById('ano').style.fontSize = '2em';
+        }
+        //Vamos a conocer un segundo evento que se llama DOMContentLoaded, depende del objeto Documento
+        function inicializarAno() {
+            /*Definimos una variable que se llama Año y asignamos un valor, para sacar el año actual, creamos un nuevo objeto DATE --new Date-- que sirve para trabajar con fechas y este objeto tiene un metodo que se llama getFullYear() que devuelve el año de la fecha que se ha producido con new Date, si no entregamos ningun dato, lo que hace es que genera la fecha y hora actual y al finalizar se guardara todo en la variable Año
+            */  
+            var ano = new Date().getFullYear();
+            /*Acedemos al elemento con getElementById y despues a las propiedades de este elemento de la pagina que es el value y nos permite asignar cualquier cosa y asignaremos la variable ano.
+            */
+            document.getElementById('ano').value = ano;
+            document.getElementById('ano').addEventListener('click', cambiaEstilo);
+        }
+        document.addEventListener('DOMContentLoaded', inicializarAno);
+    </script>
+
+</head>
+<body>
+    <h1>load vs DOMContentLoaded</h1>
+
+    Año: <input type="text" id="ano">
+
+
+</body>
+</html>

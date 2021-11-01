@@ -1,0 +1,40 @@
+<!---
+EJERCICIOS
+==========
+
+1.- Coloca un script en tu página con un mensaje de bienvenida
+
+2.- Haz una página con dos campos de texto. 
+En la inicialización los campos de texto deben aparecer rellenados con el valor 
+  - "uno" en el primer campo de texto
+  - "dos" en el segundo campo de texto
+
+3.- En Javascript defines un array con varios nombres de ciudades, por ejemplo ["Madrid", "Barcelona", "Valencia", "Sevilla", "Bilbao"]
+Recorre ese array de ciudades y genera un mensaje con cada una de ellas.
+
+
+
+
+
+Por ejemplo de la funcion cambiaEstilo() del ejercicio 4-interaccion.html
+function cambiaEstilo() {
+  document.getElementById('ano').style.color = '#33cccc';
+  document.getElementById('ano').style.fontSize = '2em';
+}
+
+document.getElementById('ano').addEventListener('click', cambiaEstilo);
+
+
+***** this *******
+Con this accedo al elemento sobre el cual se ha producido el evento click en este caso que ha imbocado la funcion cambiaEstilo
+Y en vez de ir o acceder con 
+  document.getElementById('ano').style.color = '#33cccc'; 
+  se podria acceder con
+  this.style.color = '#33cccc';
+  this.style.fontSize = '2em';
+
+  Se utiliza/ viene en la programacion orientada a objetos
+  Directamente lo que es, quien es this? Soy yo mismo y en este caso de un evento, pues yo mismo, quien soy? pues el elemento sobre el cual se ha producido este evento
+
+  Con this se utiliza para no tener que de nuevo buscar el elemento a traves del ID, ya que tenemos el elemento this, no tenemos que hacer otra consulta al DOM para acceder a ese elemento
+--->
