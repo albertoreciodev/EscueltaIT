@@ -313,3 +313,37 @@ do {
     nombre = prompt('Dime tu nombre', 'Miguel');
 } while (nombre != 'Miguel');
 alert('Bienvenido 2!!');
+
+
+
+
+/* Sintaxis de objetos
+
+Acceso a una propiedad
+Que son propiedades? Son como variables que tienen los objetos y que yo soy capaz de manipularlas y cambiar cosas
+Como se accede a las propiedades? Tenemos un objeto, document es un objeto, es uno de los objetos principales que sirven de raiz a todo el modelo de objetos que estan dentro del documento, cualquier cosa que apareze en la pagina, cuelga del objeto document y dentro del objeto document, directamente hay una propiedad (como una variable) que se llama bgColor 
+document.bgColor = 'red'
+Luego dentro del documento, existen propiedades que cuelgan directamente del documento y tambien cuelgan otros objetos o otros arrays, por ejemplo esta el array de forms. Con forms, tengo acceso a todos los formularios que cuelgan de un documento
+Con [0] accedo al primer formulario que haya en la pagina si por ejemplo hay 5, accederemos al primero
+document.forms[0].action  // Con .action accedemos a la propiedad del formulario 0, el primer formulario que aparece en la pagina
+document.forms[0].campo.value
+
+
+Acceso a un método
+Es exactamente lo mismo, lo que pasa es que los métodos, en vez de ser como variables que estan asociadas a un objeto, son como funciones que estan asociadas a un objeto y hacen alguna funcionalidad que le pertenezca a un objeto
+Por ejemplo, en un documento, puedo pedir crear un elemento
+document.body.createElement('p');
+document.body.appendChlid(nuevoParrafo);
+
+
+Los metodos son funciones que estan asociadas a los objetos
+
+
+Curso de Javascript práctico para el desarrollo web 
+curso hecho en el 03/05/2017
+https://escuela.it/cursos/curso-practico-javascript-desarrollo-web
+
+https://developer.paypal.com/docs/business/
+https://developer.paypal.com/docs/api/overview/
+
+*/

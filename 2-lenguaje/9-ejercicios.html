@@ -1,0 +1,130 @@
+<!---
+EJERCICIOS
+==========
+
+1.- Realizar operaciones para nuestra calculadora (-,*,/)
+
+2.- Solicitar la edad del usuario, si es 18 o menos, decirle que no puede estar aquí.
+
+3.- En nuestra calculadora,  comprobar que la operación no devuelve NaN, alertar que no se puede realizar la operación si es el caso, en vez de mostrar NaN como resultado
+
+4.- Hacer una función que compruebe si en un array, todos los valores son numéricos.
+La función debe devolver un boleano (true o false) dependiendo si son todos números o no.
+
+5.- Hacer una función que, de un array de números, devuelva el valor máximo. Otra que devuelva el valor mínimo.
+--->
+
+
+<!---
+1.- Realizar operaciones para nuestra calculadora (-,*,/)
+--->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+</head>
+<body>
+    <input type="text" id="operando1" size="4">
+    <button id="suma">+</button>
+    <input type="text" id="operando2" size="4">
+    =
+    <input type="text" id="resultado" size="4">
+
+
+    <script>
+
+
+    </script>
+</body>
+</html>
+
+<?php /***************
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <!--
+    2.- Haz una página con dos campos de texto. 
+    En la inicialización los campos de texto deben aparecer rellenados con el valor 
+    - "uno" en el primer campo de texto
+    - "dos" en el segundo campo de texto
+    -->
+    Campo de texto 01 <input type="text" id="primerCampo">
+    <br/>
+    Campo de texto 02 <input type="text" id="segundoCampo">
+
+    <script>
+        /*
+        var i;
+        var nombres = ['Miguel', 'Luis', 'Ruben', 'Sara', 'Victor'];
+
+        for(i = 0; i < nombres.length; i++) {
+            alert('Hola ' + nombres[i]);
+        }
+        */
+
+        /*
+https://www.google.com/search?q=javascript+syntax+cheat+sheet&tbm=isch&ved=2ahUKEwj_gN-Ah_DzAhUX7xoKHRM8CZIQ2-cCegQIABAA&oq=javascr+cheat+sheet&gs_lcp=CgNpbWcQARgAMgYIABAHEB4yBggAEAcQHjIGCAAQBxAeMgYIABAHEB4yBggAEAcQHjIGCAAQBxAeMgYIABAHEB4yBggAEAcQHjIGCAAQBxAeMgYIABAHEB46BAgAEENQkQpY3xFghk9oAHAAeACAAX2IAa8FkgEDNy4xmAEAoAEBqgELZ3dzLXdpei1pbWfAAQE&sclient=img&ei=MiN8Yf-fOJfea5P4pJAJ&bih=1072&biw=1903&hl=es#imgrc=wNpGforEmzeWVM
+
+https://blog.templatetoaster.com/wp-content/uploads/2018/01/js-cheatsheet.jpg
+https://blog.templatetoaster.com/javascript-cheat-sheet/
+https://external-preview.redd.it/rZpKXywTBOoYrzKJU_zBWBe1O5e_hm9uYtT5Rn0fwnE.png?auto=webp&s=c18fc39557bddcff67c0262d81bf48d160b853f2
+https://giters.com/iLoveCodingOrg/javascript-cheatsheet?amp=1
+file:///C:/Users/Asus%20Portatil/Downloads/js-cheatsheet.pdf
+https://res.cloudinary.com/practicaldev/image/fetch/s--3ikT4DwH--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://res.cloudinary.com/dn4nxz7f0/image/upload/v1592568809/trang-web-cheat-sheet/OverAPI_iu3jzc.png
+https://www.emezeta.com/articulos/javascript-cheatsheet-chuleta-js
+https://i.emezeta.com/weblog/javascript-cheatsheet/javascript-pagina-1.png
+https://hackr.io/blog/javascript-cheat-sheet*****
+https://ilovecoding.org/blog/js-cheatsheet
+
+        */
+    </script>
+
+
+    <script>
+    /******* Ejercicios
+        1.- Coloca un script en tu página con un mensaje de bienvenida
+
+        2.- Haz una página con dos campos de texto. 
+        En la inicialización los campos de texto deben aparecer rellenados con el valor 
+        - "uno" en el primer campo de texto
+        - "dos" en el segundo campo de texto
+
+        3.- En Javascript defines un array con varios nombres de ciudades, por ejemplo ["Madrid", "Barcelona", "Valencia", "Sevilla", "Bilbao"]
+        Recorre ese array de ciudades y genera un mensaje con cada una de ellas.
+    ***********/
+
+        var mensaje = "Bienvenida a la pagina web";
+        alert(mensaje);
+
+
+        function inicializarUno() {
+            document.getElementById('primerCampo').value = "uno"
+        }
+
+        function inicializarDos() {
+            document.getElementById('segundoCampo').value = "dos"
+        }
+
+        document.addEventListener('DOMContentLoaded', inicializarUno);
+        document.addEventListener('DOMContentLoaded', inicializarDos);
+
+        var ciudades = ['Madrid', 'Barcelona', 'Valencia', 'Sevilla', 'Bilbao'];
+
+        for(i = 0; i < ciudades.length; i++) {
+            alert(ciudades[i]);
+        }
+    </script>
+</body>
+</html>
+****/ ?>

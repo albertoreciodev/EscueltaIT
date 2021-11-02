@@ -74,3 +74,10 @@ function sumatorio(vector) {
 }
 console.log (sumatorio(numeros));
 
+
+// Arrays multidimensión
+var numeros = [3, 5, 2, 10, 'fff', [40, 45, 'e', [49, 2]]];
+// Manipulaciones de arrays - Como acedemos a un array dentro de un array
+console.log (numeros[5][2]); // En la casilla 5 tenemos otro array, ponemos el número 5 para poder aceder y si quiero sacar la letra dentro de este array, tenemos que poner el número 2 (que es la tercera posición, siempre se empieza con la posición 0)
+
+console.log (numeros[5][3][1]);
