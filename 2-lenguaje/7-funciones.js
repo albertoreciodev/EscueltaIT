@@ -316,6 +316,117 @@ alert('Bienvenido 2!!');
 
 
 
+document.addEventListener('DOMContentLoaded', initialize);
+
+function initialize(){
+    if(Cookies.enabled) {
+        if(Cookies.get('cookiesaceptadas') != 'aceptadas') {
+            launchCookieAdvisor('Tienes que aceptar las cookies');
+        }        
+    } else {
+        launchCookieAdvisor('Tu navegador no acepta cookies, por favor activalo');
+    }
+}
+
+
+function launchCookieAdvisor(msg) {
+    var capaCookies = document.createElement('div');
+    capaCookies.setAttribute('id', 'esteid');
+    capaCookies.innerHTML = '<p>' + msg + ' <span>Aceptar</span></p>';
+    capaCookies.classList.add('avisoCookies');
+    var todosLosSpanEnDiv = capaCookies.getElementsByTagName('span');
+    todosLosSpanEnDiv.item(0).addEventListener('click', function() {
+        if(Cookies.enabled) {
+            Cookies.set('cookiesaceptadas', 'aceptadas', {expires: 60 * 60 * 24 * 365 *2} ); // Cuando se haga el comportamiento click, se creara esta cookie que caducara en 2 años
+        } else {
+
+        }
+        capaCookies.remove();
+    })
+    document.body.appendChild(capaCookies);
+    // Notacion de objetos
+    // No es mas que una manera de escribir objetos por sus valores, de manera literal
+    //En el propio codigo de Javascript, yo soy capaz de definir objetos al vuelo, en mi codigo, por medio de valores literales
+    // Por ejemplo, siempre entre llaves
+    var miObjeto = {
+        llave : 'valor',
+        edad: 24,
+        casado: true,
+        titulacion: {
+            universidad: 'upm',
+            ano: '2010',
+            lugar: 'Madid'
+        }
+
+
+
+    }
+    // Tambien esta notacion la podemos encontrar con el nombre de JSON, que tambien son anotacion de objetos, que sirve definir objetos a traves de cadenas
+}
+
+/*****
+La jerarquia de objetos del DOM
+windows > document > forms > formulario > elementos
+document.forms.nameForm.nameElement
+
+
+Acceso por identificador
+Mediante el identificador del campo y la función de selección getElementById
+document.getElementById('idDelCampo');
+
+
+Evento "submit"
+formulario.addEventListener('submit', validar);
+
+function validar(e) {
+    e.preventDefault();
+}
+
+********/
+
+
+
+
+document.addEventListener('DOMContentLoaded', prepareValidation);
+
+function prepareValidation() {
+    //acceso al formulario por name
+    var formul = document.forms.formulname;
+
+    formul.addEventListener('submit', validar);
+
+    function validar(e) { //e-->evento recibe el objeto evento
+        e.preventDefault();
+        var f = this;
+
+        if(! f.nombre || typeof f.nombre != 'string' || f.nombre.value.length < 2) {
+            console.log('El nombre no es valido');
+            return false;
+        }
+        //es que no me sali por el anterior return = el nombre si era valido
+        if(! validateEmail(f.email.value)) {
+            console.log('El email es invalido');
+            return false;
+        }
+
+
+        // Si el formulario es correcto
+        //es mejor con la variable------------document.forms.formulname.submit();
+        //formul.submit();
+        this.submit();// this hace referencia al formulario mirar con console.log
+    }
+}
+    function validateEmail(email) {
+        const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(String(email).toLowerCase());
+    }
+
+
+
+
+
+
+
 
 /* Sintaxis de objetos
 
@@ -339,6 +450,24 @@ document.body.appendChlid(nuevoParrafo);
 Los metodos son funciones que estan asociadas a los objetos
 
 
+
+
+
+
+
+terminales de comando en windows
+utilizar el de git mejor
+powershell-- hecho por microsfit
+hyper 
+cmder.net -- es portable
+
+libreria underscorejs.org
+bower install underscore --save
+
+
+
+http-server npm
+npm install -g http-server
 Curso de Javascript práctico para el desarrollo web 
 curso hecho en el 03/05/2017
 https://escuela.it/cursos/curso-practico-javascript-desarrollo-web
