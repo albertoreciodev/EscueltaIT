@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajax con jQuery POST</title>
+    <!---
+        Con el siguiente formulari y con Ajax vamos a enviar el formulario a una ruta pero no vamos a hacer el comportamiento por defecto del navegador (que seria enviar el formulario y recargar la pagina entera), sino que por medio de Ajax, vamos a componer una solucitud y en segundo plano, recibiremos los datos de respuesta de esta solicitud.
+    ---->
+    <style>
+        .cargando {
+            background-image: url('spinner.gif');
+            background-repeat: no-repeat;
+            height: 16px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <form action="http://localhost:3000" id="formul">
+        Nombre: <input type="text" name="nombre" value="Miguel" id="nombreid">
+        <br>
+        Edad: <input type="text" name="edad" value="42" id="edadid">
+        <br>
+        <input type="submit" value="Enviar">
+    </form>
+
+    <div id="mensaje"></div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+    <script>
+        $(function() {
+            $('#formul').on('submit', function(e) {
+                e.preventDefault(); // Es detener el comportamiento por defecto del formulario porque sino se enviaria por el mecanismo normal y se recargaria la pagina
+
+                var f = $(this);
+                var url = f.attr('action');
+
+                // Podriamos realizar una serie de validaciones de formulario
+                var respuesta = function(res) {
+                    $('#mensaje').html(res);
+                };
+
+                // No se utiliza esta manera o metodo
+                var data = {
+                    nombre: $('#nombreid').val(),
+                    edad: $('#edadid').val()
+                }
+
+                var data = f.serialize(); // Accedemos al formulario extendido con jQuery y hay una funcion que se llama Serialize(); Lo que hace es que te evitar hace todo ese trabajo de ir campo por campo e ir componiendo los obejcto del formulario
+
+                $.post(url, data, respuesta);
+                // POST tambien necesita saber a donde se va a enviar el formulario
+                // En vez de poner el test.txt, tenemos que acceder al atributo action del formulario
+
+                // Resultado en el network ---> test.txt?dato=valor&edad=33    
+                // Esto es lo que envia al servidor
+
+
+
+                // Esto es una alternativa pero jQuery ofrece otra intervaz (en vez del serialize) para definir toda la serie de funciones Callback que se van a ejecutar como respuesta a los distintos procesos de la solicitud Ajax.
+                // Tema Asincronia
+
+                // Para todo el tema de la Asincronia, el jQuery permite unas funciones mas avanzadas por medio de las funciones Callback y que se puede enxufar a continuacion del $POST. No tiene punto y coma porque esta linia de codigo va a continuar y es a lo que me devolviese $POST, estoy añadiendo nuevas llamadas. Lo que me devuelve $POST es un objecto que tiene una serie de metodos que me sirven para añadir funciones Callback para poder producir distintos comportamientos en distintas situaciones en la llamada Ajax. Hemos quitado la funcion success (respuesta)
+                $.post(url, data).done(respuesta);
+                
+
+                var error = function() {
+                    $('#mensaje').text('Se ha producido un error');
+                }
+
+                var siempre = function() {
+                    console.log('Se ejecuta en caso de error y éxito');
+                }
+
+                $.post(url, data)
+                    .done(respuesta)
+                    .fail(error)
+                    .always(siempre);
+
+
+
+
+                // Ahora vamos a hacer cargando (spinner) y aprovechar el codigo, agregamos una clase style .cargando
+                
+                $(function() {
+                    $('#formul').on('submit', function(e) {
+                        e.preventDefault(); // Es detener el comportamiento por defecto del formulario porque sino se enviaria por el mecanismo normal y se recargaria la pagina
+
+                        var f = $(this);
+                        var url = f.attr('action');
+                        $('#mensaje').addClass('cargando');
+                        
+                        var data = f.serialize();
+
+                        var respuesta = function(res) {
+                            $('#mensaje').html(res);
+                        };
+
+                        var error = function() {
+                            $('#mensaje').text('Se ha producido un error');
+                        }
+
+                        var siempre = function() {
+                            console.log('Se ejecuta en caso de error y éxito');
+                            $('#mensaje').removeClass('cargando');
+                        }
+
+                        $.post(url, data)
+                            .done(respuesta)
+                            .fail(error)
+                            .always(siempre);
+                    });
+                });
+
+            });
+        });
+    </script>
+
+    <script>
+        /*******Ajax, jQuery y Fetch(fetch es lo mas nuevo de Javascrip para poder hacer Ajax)
+         * 
+         * Ajax --> Realiza solicitudes al servidor y recibe la respuesta sin necesidad de recargar toda la página
+         * 
+         * 
+         * Ajax con Fetch Al ahcer con Ajax hay diferencias sensibles con los diferentes navegadores , no nativo pero eso hace 4 años, utilizar Ajax con Fetch
+         * 
+         * 
+         * Callback
+         * Todo lo que comienza con jQuery, lo recomendable es utilizar una función Callback (es  una función que se ejecuta mas adelante, en algun momento futuro)
+         * 
+         * $(function() {
+         *      S('#enlace').on('click', function(e) {
+         *          e.preventDefault();
+         *      
+         *          $('#mensaje').load('test.txt');
+         *      });
+         * });
+        ***********/
+    </script>
+
+
+</body>
+</html>

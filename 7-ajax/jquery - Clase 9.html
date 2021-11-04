@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajax con jQuery</title>
+</head>
+<body>
+
+    <a href="#" id="enlace">Cargar algo con Ajax y jQuery</a>
+    <div id="mensaje"></div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+    <script>
+        $(function() {
+            $('#enlace').on('click', function(e) {
+                e.preventDefault();
+                    $('#mensaje').load('test.txt');
+            });
+        });
+    </script>
+
+    <script>
+        /*******Ajax, jQuery y Fetch(fetch es lo mas nuevo de Javascrip para poder hacer Ajax)
+         * 
+         * Ajax --> Realiza solicitudes al servidor y recibe la respuesta sin necesidad de recargar toda la página
+         * 
+         * 
+         * Ajax con Fetch Al ahcer con Ajax hay diferencias sensibles con los diferentes navegadores , no nativo pero eso hace 4 años, utilizar Ajax con Fetch
+         * 
+         * 
+         * Callback
+         * Todo lo que comienza con jQuery, lo recomendable es utilizar una función Callback (es  una función que se ejecuta mas adelante, en algun momento futuro)
+         * 
+         * $(function() {
+         *      S('#enlace').on('click', function(e) {
+         *          e.preventDefault();
+         *      
+         *          $('#mensaje').load('test.txt');
+         *      });
+         * });
+        ***********/
+        /**************
+        Jquery Shorthand Methods
+        These methods perform the more common types of Ajax requests in less code.
+
+        jQuery.get()
+        Load data from the server using a HTTP GET request.
+
+        jQuery.getJSON()
+        Load JSON-encoded data from the server using a GET HTTP request.
+
+        jQuery.getScript()
+        Load a JavaScript file from the server using a GET HTTP request, then execute it.
+
+        jQuery.post()
+        Send data to the server using a HTTP POST request.
+
+        .load()
+        Load data from the server and place the returned HTML into the matched elements.
+
+        ************/
+    </script>
+
+
+</body>
+</html>

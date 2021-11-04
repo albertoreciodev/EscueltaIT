@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch & Polyfill</title>
+    <!---
+        En esta caso, he creado un boton que va a hacer una conexión con Ajax y un parrafo donde voy a volcar la respuesta una vez que la reciba.
+    ---->
+</head>
+<body>
+
+    <button id="btn">Hacer una conexión con Ajax</button>
+    <p id="respuesta"></p>
+
+
+    <!---
+        En esto de aqui, deberiamos hacer algun tipo de estrategia para poder cargarlo solo de manera condicional.
+        Vamos a utilizar un script que va servir para cargar de manera condicional un polyfill
+        (En vez de cargar estos dos o otros y tiempos de carga, etc)
+        <script src="../bower_components/promise-polyfill/promise.js"></script>
+        <script src="../bower_components/fetch/fetch.js"></script>
+    ---->
+
+    <script>
+        // https://philipwalton.com/articles/loading-polyfills-only-when-needed/
+        function loadScript(src, done) {
+            var js = document.createElement('script');
+            js.src = src;
+            js.onload = function() {
+                done();
+            };
+            js.onerror = function() {
+                done(new Error('Failed to load script ' + src));
+            };
+            document.head.appendChild(js);
+        }
+
+        // Libreria Yep nope js
+
+        // Poner aqui dentro el archivo bower.json dentro de fecth y promise.polyfill poner aqui dentro o en un archivo a parte polyfills.js
+
+
+        // Organizar mejor el código
+        document.addEventListener('DOMContentLoaded', initialize);
+
+        function initialize() {
+            // console.log(window.fetch); Comprobar si fetch en los navegadores estan soportado
+            if(! window.fetch) {
+                loadScript('./polyfills.js', configureAjaxCalls);
+            } else {
+                configureAjaxCalls();
+            }
+        }  
+
+        function configureAjaxCalls() {
+            document.getElementById('btn').addEventListener('click', btnClickHandler);
+        }
+        ...
+    </script>
+    
+    <script src="./load-script.js"></script><!-- Esto antes que el addeventlistener y es de la web, el condicional-->
+
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajax con jQuery</title>
+    <!---
+        Voy a hacer un ejemplo en el cual voy a pulsar un enlace y cuando pulse un enlace, voy a enviar datos al servidor y los voy a enviar por GET
+    ---->
+</head>
+<body>
+
+    <a href="#" id="enlace">Cargar algo con Ajax y jQuery</a>
+    <div id="mensaje"></div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+    <script>
+        $(function() {
+            $('#enlace').on('click', function(e) {
+                e.preventDefault();
+                //Voy a crear una variable con los datos
+                //jQuery.get     --->    jQuery.get( url [, data ] [, success ] [, dataType ] )
+                //Recibe la url, recibe el data (los datos que quieres enviar al servidor), tieens que la funcion success, puedes indicar un callback, esto es para la respuesta HTML om JSON
+                var data = {
+                    dato: 'valor',
+                    edad: 33
+                };
+
+                var respuesta = function(res) { // puedo declarar cualquier variable, ejemplo res que va a ser lo que me devuelva como respuesta de esa solicitud Ajax
+                    $('#mensaje').html(res);
+                };
+
+                $.get('test.txt', data, respuesta);
+                // Resultado en el network ---> test.txt?dato=valor&edad=33    
+                // Esto es lo que envia al servidor
+            });
+        });
+    </script>
+
+    <script>
+        /*******Ajax, jQuery y Fetch(fetch es lo mas nuevo de Javascrip para poder hacer Ajax)
+         * 
+         * Ajax --> Realiza solicitudes al servidor y recibe la respuesta sin necesidad de recargar toda la página
+         * 
+         * 
+         * Ajax con Fetch Al ahcer con Ajax hay diferencias sensibles con los diferentes navegadores , no nativo pero eso hace 4 años, utilizar Ajax con Fetch
+         * 
+         * 
+         * Callback
+         * Todo lo que comienza con jQuery, lo recomendable es utilizar una función Callback (es  una función que se ejecuta mas adelante, en algun momento futuro)
+         * 
+         * $(function() {
+         *      S('#enlace').on('click', function(e) {
+         *          e.preventDefault();
+         *      
+         *          $('#mensaje').load('test.txt');
+         *      });
+         * });
+        ***********/
+    </script>
+
+
+</body>
+</html>

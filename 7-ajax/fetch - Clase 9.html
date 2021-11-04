@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch</title>
+    <!---
+        En esta caso, he creado un boton que va a hacer una conexión con Ajax y un parrafo donde voy a volcar la respuesta una vez que la reciba.
+    ---->
+</head>
+<body>
+
+    <button id="btn">Hacer una conexión con Ajax</button>
+    <p id="respuesta"></p>
+
+    <script>
+        /******
+         * Para trabajar con Fetch necesitamos saber lo que son las promesas
+         * 
+         * Las promesas es un mecanismo nuevo de Javascript que viene con ES6
+         * Sirven para controlar y organizar mejor el código asíncrono.
+         * Permiten definir funciones que se ejecurtarán cuando una operación asíncrona ha terminado de realizarse.
+         * 
+         * 
+         * then() y catch()
+         * - La función entregada a then() se ejecutará si la operación de la promesa se produjo correctamente. Me sirve para indicar la función que yo quiero ejecutar cuando se haya producido un proceso asíncrono con éxito
+         * 
+         * - La función entregada a catch() se ejecutará si la operación de la promesa se produjo un error.
+         * 
+         * fetch('test.txt') // Es decir donde esta aquel recurso al cual nos queremos conectar por Ajax
+         *  .then(function(response) {
+         *      //código a ejecutar en el caso positivo
+         *  })
+         * .catch(function(err) {
+         *      //código a ejecutar en el caso de error
+         *  });
+         * *****/
+
+        document.addEventListener('DOMContentLoaded', initialize);
+
+        function initialize() { // Se encargara de inicializar el código
+            document.getElementById('btn').addEventListener('click', function() {
+                fetch('test.txt')
+                    .then(function(response) {
+                        //código a ejecutar en el caso positivo
+                        console.log('todo bien');
+                    })
+                    .catch(function(err) {
+                        //código a ejecutar en el caso de error
+                        console.log('Algo va mal...');
+                    });
+            });
+        }
+
+
+
+        // Organizar mejor el código
+        document.addEventListener('DOMContentLoaded', initialize);
+
+        function initialize() {
+            document.getElementById('btn').addEventListener('click', btnClickHandler);
+        }  
+
+        function btnClickHandler() {
+            fetch('test.txt')
+                .then(function(response) {
+                    //código a ejecutar en el caso positivo
+                    console.log('todo bien');
+                    //console.log('todo bien', response.text()); // El metodo .text de response me devuelve es el texto que me devuelve el servidor como respuesta. Perp este texto no lo da instantaneamente, este texto en si es una promesa, quiere decir que tiene un then o un catch
+                    // Si lo pongo aqui response.text(), despues no lo puedo poner a continuacion, da error
+                    response.text()
+                        .then(function(texto) {
+                            console.log(texto);
+                            document.getElementById('respuesta').innerHTML = texto;
+                        })
+                        .catch(function(err) {
+                            document.getElementById('respuesta').textContent = 'Otro error' + err;
+                        })
+                })
+                .catch(function(err) {
+                    //código a ejecutar en el caso de error
+                    console.log('Algo va mal...' + err);
+                });
+        }
+
+
+
+        // Si vemos este código dentro de 3 meses, nos va a costar de leerlo y de mantenerlo, vamos hacerlo de otra manera
+        function btnClickHandler() {
+            // En vez de colocar directamente las funciones como Callbacks, una buena practica, seria escribirlas aparte
+            fetch('test.txt')
+                .then(ajaxPositive)
+                .then(showResult) // Ya recibo el texto de response.text
+                .catch(showError);
+
+            function ajaxPositive(response) {
+                console.log(response.ok);
+                if(response.ok) {
+                    console.log('Ha ido bien', response.status);
+                    return response.text();
+                } else {
+                    console.log('status', response.status);
+                    return Promise.reject('no he podido recibir bien ese archivo (status ' + response.status + ')'); // Siempre se resuelve en caso negativo
+                }
+            }
+
+            function showResult(txt) {
+                console.log('muestro respuesta: ', txt);
+                if(txt) {
+                    var resElement = document.getElementById('respuesta');
+                    resElement.textContent = txt;
+                    resElement.style.color = 'blue';
+                }
+            }
+
+            function showError() {
+                console.log('muestro error', err);
+                var resElement = document.getElementById('respuesta');
+                resElement.textContent = 'Hubo un error: ' + err;
+                resElement.style.color = 'red';
+            }
+            // Como poder encadenar promesas para producir codigo mas sencillo de leer
+        }
+    </script>
+
+</body>
+</html>
